@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<script src="js/vendor/jquery-1.10.1.js"></script>
+		<title>And in that sleep of death...</title>
+	</head>
+	<body>
+		<h1> Hello World </h1>
+		<div id="app"></div>
+	</body>
+
+	<script>
+		$( "#app" ).css( "border", "3px solid red" );
+		data = {val1 : "Hello World!"};
+		data.val2 = "Rise Up!";
+		console.log(data);
+		$.post('/dbconnect.php', data, function(rData) {
+			console.log(rData);
+		});
+	</script>
+
+</html>

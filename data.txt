@@ -1,0 +1,6 @@
+$mysql_host = "mysql.2freehosting.com";
+$mysql_database = "u611530530_out";
+$mysql_user = "u611530530_admin";
+$mysql_password = "Swagaga11";
+
+2freehosting.com

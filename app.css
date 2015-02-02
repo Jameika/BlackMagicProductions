@@ -1,0 +1,107 @@
+body {
+    background-color: #aaddff;
+}
+h1 {
+    color: white;
+    text-shadow: 0px 0px 3px black, 0px 0px 3px black, 0px 0px 3px black, 0px 0px 3px black, 0px 0px 3px black;
+    margin-left: 20px;
+}
+div {
+    background-color: #eee;
+}
+
+ .btnClass {
+	font-size: 18px;
+}
+
+#mainFrame {
+	width: 800px;
+	height: 600px;
+	background-color: #aaddff;
+    margin: 5px;
+	outline-color: #000000;
+	outline-style: solid;
+    float: left;
+	/* Figure out how to do this later */
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%, 0%);
+}
+#Taketwo {
+	position:relative;
+    right: 25%;
+    left: 25%;
+}
+
+#logo {
+	width: 600px;
+	height: 125px;
+	outline-style: solid;
+	outline-color: #000000;
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	text-align:center;
+}
+
+#login {
+	width: 600px;
+	height: 100px;
+	outline-style: solid;
+	outline-color: #000000;
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%, 150px);
+	text-align:center;
+	font-size:large;
+}
+
+#outText { 
+    background-color: yellow;
+	width: 350px;
+    height: 150px;
+    overflow: scroll;
+    position: fixed;
+    bottom : 0;
+    right : 0;
+	outline-color: #000000;
+	outline-style: solid;
+	text-indent:1em;
+}
+
+#inputDiv { 
+	width: 250px;
+	height: 150px;
+	background-color: #FFEFDB;
+    position: fixed;
+    bottom : 0;
+    left : 0;
+	outline-color: #000000;
+	outline-style: solid;
+}
+
+#charStatusDiv {
+	width: 200px;
+	height: 150px;
+	background-color: #FFEFDB;
+    position: fixed;
+    bottom : 0;
+    left : 250;
+	outline-color: #000000;
+	outline-style: solid;
+	text-align:center
+}
+
+#innerCharDiv {
+	background-color: #FFEFDB;
+}
+
+#actionDisDiv {
+	background-color: #FFEFDB;
+}
+
+#battleScene {
+	width: 800px;
+	height: 450px;
+	position: fixed;
+}

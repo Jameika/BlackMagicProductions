@@ -1,0 +1,19 @@
+First, we build the enemy generator
+We test things as are.
+
+Then we refactor - need to decouple the Character class from the BattleEngine (instead, make the character for the engine, then add the character 
+into the engine) At this stage, we need to give Micah the magic_attack and heal skills
+
+Skills also need an MP cost
+
+After that, we can move back to the UI. (Add in a 'menu' screen; make a UI using clickable sprites for the battle scene itself)
+
+From there, we refactor yet again, and push the initial commit to github.
+
+With any luck, this can all happen on Saturday.
+
+////REFACTOR IN PROGRESS////
+BattleEngine.js
+UserData.js (needs default combat settings)
+MainMenuScreen.js (need to be able to pick functions)
+character.js (Needs implementation)
