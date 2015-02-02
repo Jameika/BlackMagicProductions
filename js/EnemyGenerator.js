@@ -98,6 +98,7 @@ define([], function(){'use strict';
 			//console.log(damDealt);
 			newBaddy.HP = damDealt.reduce(function(previous, cur){return previous + cur;});
 			//console.log(newBaddy.HP);
+			newBaddy.HP = 1;
 			newBaddy.name = "Priapus";
 			return newBaddy;
 		},

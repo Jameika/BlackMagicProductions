@@ -34,9 +34,6 @@ define(["./UIMain", "./BattleScreen", "./formulae"], function(UIMain, BattleScre
 				newText += t;
 			}
 			appendHTML(newText, targetDiv);
-			console.log(newText);
-			console.log(User.currentBattleParameters[v]);
-			console.log(formulae[v]);
 			i++;
 			if (i == 4) i = 0;
 		}
@@ -47,21 +44,22 @@ define(["./UIMain", "./BattleScreen", "./formulae"], function(UIMain, BattleScre
 		var processForm = function(e) {
 			if (e.preventDefault) e.preventDefault();
 			
-			console.log("HELLO WORLD!");
-			console.log(e);
-			console.log($("#optionForm"));
 			var $input=$('#optionForm :input');
-			var usernameInput = $input.filter('[name="sex"]');
-			console.log(usernameInput);
-			for (var i = 0; i < usernameInput.length; i++)
+			for (var v in User.currentBattleParameters)
 			{
-				console.log(i);
-				console.log(usernameInput[i].value);
-				console.log(usernameInput[i].checked);
+				var curInput = $input.filter('[name="' + v + '"]');
+				console.log(curInput);
+				for (var i = 0; i < curInput.length; i++)
+				{
+					if (curInput[i].checked)
+					{
+						User.currentBattleParameters[v] = curInput[i].value;
+						break;
+					}
+				}
 			}
-			console.log(usernameInput);
 			
-			//BattleScreen(MainMenu);
+			BattleScreen(MainMenu);
 			return false;
 		};
 
