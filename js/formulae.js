@@ -99,7 +99,7 @@ define([], function() {'use strict';
 				return 3;
 			},
 			simple : function(char1, char2) {
-				return Math.max(char1.special - char2.specialDefense + 5, 1);
+				return Math.max((char1.special - char2.specialDefense), 1);
 			},
 			linear : function(char1, char2) {
 				return Math.max(1, 3 * char1.special - 2 * char2.specialDefense + 5);
