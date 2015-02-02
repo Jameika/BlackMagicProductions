@@ -29,7 +29,6 @@ define([], function(){
 		},
 		
 		"Ray" : function(engine, actor, target){
-			printLine();
 			var damage = Math.floor(engine.Magical_Damage(actor, target) * engine.variance()) + 1;
 			printLine(actor.name + " casts Ray at " + target.name + "<br>" + target.name + " takes " + damage + " damage!", "outText");
 			target.takeDamage(damage);

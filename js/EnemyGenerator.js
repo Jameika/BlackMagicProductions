@@ -34,6 +34,8 @@ define([], function(){'use strict';
 			//Only consider 'offensive' skills
 			//if 'isAverage', return the average damage of all skills
 			//Otherwise, return the maximum damage
+			var aList = character.skills;
+			var outDamage = [];
 		},
 		
 		buildEnemy : function(characters,tuneables){
@@ -50,11 +52,14 @@ define([], function(){'use strict';
 			7) WELL OKAY LOOKS LIKE I FOUND A SOLUTION :D
 			*/
 			console.log("ERECTIN' A NEW BADDY");
+			console.log(characters[0]);
 			var newBaddy = this.getTemplate();
 			//For v1.0, just fix attack at some value.
 			//Let's not worry about to hit chance either
 			newBaddy.attack = Math.floor(Math.random() * 50) + 60;
 			newBaddy.defense = Math.floor(Math.random() * 50) + 25;
+			newBaddy.special = Math.floor(Math.random() * 50) + 60;
+			newBaddy.specialDefense = Math.floor(Math.random() * 50) + 25;
 			newBaddy.speed = 85;
 			newBaddy.agility = 63;
 			var engine = this.engine;
