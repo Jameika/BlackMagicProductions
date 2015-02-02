@@ -86,10 +86,10 @@ define([], function() {'use strict';
 			simple : function(char1, char2) {
 				return Math.max(char1.attack - char2.defense + 5, 1);
 			},
-			d1 : function(char1, char2) {
+			linear : function(char1, char2) {
 				return Math.max(1, 3 * char1.attack - 2 * char2.defense + 5);
 			},
-			d2 : function(char1, char2) {
+			ratio : function(char1, char2) {
 				return Math.max(1, Math.floor((char1.attack * char1.attack) / (10 * char2.defense)));
 			}
 		},
@@ -101,10 +101,10 @@ define([], function() {'use strict';
 			simple : function(char1, char2) {
 				return (Math.random() < .75);
 			},
-			a1 : function(char1, char2) {
+			linear : function(char1, char2) {
 				return (char1.accuracy - char2.accuracy) / 2 + 50 > (Math.random() * 100);
 			},
-			a2 : function(char1, char2) {
+			ratio : function(char1, char2) {
 				return (char1.accuracy) / (char1.accuracy + char2.accuracy) > Math.random();
 			},
 		}
