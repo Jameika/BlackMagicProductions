@@ -3,19 +3,28 @@
 //All functions in a group all need to take the same input
 define([], function() {'use strict';
 
-	var functions = {
-		sample_funcs: {
-		    blah: function() { alert("blah"); },
-		    foo: function() { console.log("foo"); }
-		},
+	var unimplementedFunctions = {
 		
 		init: {
 			simple : function(charList) {
+				
+			},
+			random : function(charList) {
 				return charList[Math.floor(Math.random()*charList.length)];
 			}
 		},
 		
-		damage_spread: {
+		ai: {
+			simple : function() {
+				return this.phys_attack;
+			}
+		},
+		
+	};
+	
+	var functions = {
+		
+		variance: {
 			static : function(expected){
 				return 1;
 			},
@@ -46,8 +55,12 @@ define([], function() {'use strict';
 		},
 		
 		critical_chance: {
-			static: function(character){
+			none: function(character){
 				return false;
+			},
+			
+			always: function(character){
+				return true;
 			},
 			
 			simple: function(character){
@@ -56,12 +69,12 @@ define([], function() {'use strict';
 		},
 		
 		critical_damage: {
-			static: function(character){
-				return 2;
+			static: function(character, damage){
+				return 2 * damage;
 			},
 			
-			simple: function(character){
-				return 2 + (Math.random() - .5);
+			simple: function(character, damage){
+				return Math.floor(2 + (Math.random() - .5) * damage);
 			},
 		},
 		
@@ -78,12 +91,6 @@ define([], function() {'use strict';
 			},
 			d2 : function(char1, char2) {
 				return Math.max(1, Math.floor((char1.attack * char1.attack) / (10 * char2.defense)));
-			}
-		},
-		
-		ai: {
-			simple : function() {
-				return this.phys_attack;
 			}
 		},
 		
