@@ -19,7 +19,11 @@ define([], function(UIMain){
 			];
 			this.currentBattleParameters = {
 				Physical_Damage : 'simple',
+				Magical_Damage : 'simple',
 				toHit : 'simple',
+				variance : 'simple',
+				critical_chance : 'none',
+				critical_damage : 'static',
 			};
 		},
 	});

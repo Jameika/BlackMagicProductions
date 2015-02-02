@@ -11,9 +11,22 @@ function addButton(divID, label, callBack){
 	div.append(r);
 };
 
-function addMenu(divID, labelList)
+function appendHTML(newhtml, target)
 {
-	
+	if (target[0] != "#")
+	{
+		target = "#" + target;
+	}
+	$(target).html($(target).html() + newhtml);
+}
+
+function addForm(newID, target)
+{
+	if (target[0] != "#")
+	{
+		target = "#" + target;
+	}
+	$(target).html($(target).html() + "<form id=\"" + newID + "\"></form>");
 }
 
 function addImage(location, divID)

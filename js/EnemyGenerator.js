@@ -28,6 +28,16 @@ define([], function(){'use strict';
 			return outArray;
 		},
 		
+		getExpectedDamage : function(character1, character2, isAverage){
+			//character1 is presumed offense
+			//character2 is defense
+			//Only consider 'offensive' skills
+			//if 'isAverage', return the average damage of all skills
+			//Otherwise, return the maximum damage
+			var aList = character.skills;
+			var outDamage = [];
+		},
+		
 		buildEnemy : function(characters,tuneables){
 			//For now, ignore tuneables
 			//But, given an engine (with all it's functions) and a set of characters
@@ -42,11 +52,14 @@ define([], function(){'use strict';
 			7) WELL OKAY LOOKS LIKE I FOUND A SOLUTION :D
 			*/
 			console.log("ERECTIN' A NEW BADDY");
+			console.log(characters[0]);
 			var newBaddy = this.getTemplate();
 			//For v1.0, just fix attack at some value.
 			//Let's not worry about to hit chance either
 			newBaddy.attack = Math.floor(Math.random() * 50) + 60;
 			newBaddy.defense = Math.floor(Math.random() * 50) + 25;
+			newBaddy.special = Math.floor(Math.random() * 50) + 60;
+			newBaddy.specialDefense = Math.floor(Math.random() * 50) + 25;
 			newBaddy.speed = 85;
 			newBaddy.agility = 63;
 			var engine = this.engine;
@@ -60,19 +73,32 @@ define([], function(){'use strict';
 			}
 			var damagePercents = characters.map(function(v, i){return engine.Physical_Damage(newBaddy,v) * (1.0 / v.maxHP);});
 			var hitsNeeded = characters.map(function(v,i){return v.maxHP * (1.0 / engine.Physical_Damage(newBaddy,v));});
-			//console.log(newBaddy);
-			//console.log(damagePercents);
-			//console.log(hitsNeeded);
+			console.log(newBaddy);
+			console.log(damagePercents);
+			console.log(hitsNeeded);
 			var totalHits = hitsNeeded.reduce(function(previous, cur){return previous + Math.ceil(cur);}, 0);
 			//Too easy to get attack stats that just plink off a characters armor (dealing exactly 1 damage on linear formulae) - need to tune this by a LOT
 			//Ignore this for now
-			//console.log(totalHits);
+			console.log(totalHits);
 			//We naively assume that the player gets half that many hits in per character
-			var playerHits = Math.floor(totalHits / 2);
+			//And then scale the enemy HP down to make it more managable
+			//Because we don't necessarily want it to be neck-and-neck
+			var scaleFactor = 10;
+			var playerHits = Math.floor(totalHits / (2 * scaleFactor));
+			console.log(playerHits);
+			for (var i = 0; i < characters.length; i++)
+			{
+				var v = characters[i];
+				while (engine.Physical_Damage(v,newBaddy) * playerHits <= 1)
+				{
+					newBaddy.defense--;
+				}
+			}
 			var damDealt = characters.map(function(v, i){ return engine.Physical_Damage(v,newBaddy) * playerHits;});
 			//console.log(damDealt);
 			newBaddy.HP = damDealt.reduce(function(previous, cur){return previous + cur;});
 			//console.log(newBaddy.HP);
+			newBaddy.HP = 1;
 			newBaddy.name = "Priapus";
 			return newBaddy;
 		},
