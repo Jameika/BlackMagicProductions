@@ -52,7 +52,7 @@ define([], function(){'use strict';
 			var engine = this.engine;
 			for (var i = 0; i < characters.length; i++)
 			{
-				var c = characters[i];
+				var v = characters[i];
 				while (engine.Physical_Damage(newBaddy,v) * (1.0 / v.maxHP) < .01)
 				{
 					newBaddy.attack++;
