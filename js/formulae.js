@@ -69,6 +69,12 @@ define([], function() {'use strict';
 				if (expected) return .15;
 				return Math.random() < .15;
 			},
+			
+			frequent: function(character, expected){
+				if (expected) return .35;
+				return Math.random() < .35;
+			},
+
 		},
 		
 		critical_damage: {
@@ -90,8 +96,14 @@ define([], function() {'use strict';
 			linear : function(char1, char2) {
 				return Math.max(1, 3 * char1.attack - 2 * char2.defense + 5);
 			},
+			HighPower : function(char1, char2){
+				return Math.max(1, 5 * char1.attack - 3 * char2.defense + 5);
+			},
 			ratio : function(char1, char2) {
 				return Math.max(1, Math.floor((char1.attack * char1.attack) / (10 * char2.defense)));
+			},
+			HighPowerRatio : function(char1, char2) {
+				return Math.max(1, Math.floor((char1.attack * char1.attack) / (6 * char2.defense)));
 			}
 		},
 		
@@ -103,8 +115,14 @@ define([], function() {'use strict';
 			linear : function(char1, char2) {
 				return Math.max(1, 3 * char1.special - 2 * char2.specialDefense + 5);
 			},
+			HighPower : function(char1, char2){
+				return Math.max(1, 5 * char1.special - 3 * char2.specialDefense + 5);
+			},
 			ratio : function(char1, char2) {
 				return Math.max(1, Math.floor((char1.special * char1.special) / (10 * char2.specialDefense)));
+			},
+			HighPowerRatio : function(char1, char2) {
+				return Math.max(1, Math.floor((char1.special * char1.special) / (6 * char2.specialDefense)));
 			}
 		},
 		
