@@ -6,13 +6,21 @@
 define([], function(){
 	
 	actions = {
-		"Attack" : function(engine, actor, target){
+		"Attack" : function(engine, actor, target, testing){
+			console.log("CHARGE!");
+			if (testing)
+			{
+				var damage = Math.floor(engine.toHit(actor, target,true) * engine.Physical_Damage(actor, target) * engine.variance(true)) + 1;
+				var critChance = engine.critical_chance(actor, true);
+				var critDamage = engine.critical_damage(actor, damage, true);
+				return damage * (1 - critChance) + critDamage * (critChance);
+			}
 			if (engine.toHit(actor, target))
 			{
 				var damage = Math.floor(engine.Physical_Damage(actor, target) * engine.variance()) + 1;
 				if (engine.critical_chance(actor))
 				{
-					var damage = engine.critical_damage(actor, damage);
+					damage = engine.critical_damage(actor, damage);
 					printLine("CRITICAL HIT!<br>" + actor.name + " attacks " + target.name + "<br>" + target.name + " takes " + damage + " damage!", "outText");
 					target.takeDamage(damage);
 				}
@@ -28,7 +36,8 @@ define([], function(){
 			}
 		},
 		
-		"Ray" : function(engine, actor, target){
+		"Ray" : function(engine, actor, target, testing){
+			if(testing) return Math.floor(engine.Magical_Damage(actor, target) * engine.variance(true)) + 1;
 			var damage = Math.floor(engine.Magical_Damage(actor, target) * engine.variance()) + 1;
 			printLine(actor.name + " casts Ray at " + target.name + "<br>" + target.name + " takes " + damage + " damage!", "outText");
 			target.takeDamage(damage);

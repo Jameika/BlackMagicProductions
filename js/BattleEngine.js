@@ -28,6 +28,9 @@ define(["./character", "./formulae", "./actions"], function(Character, Formulae,
 			this.allCharacters = [];
 			this.playerCharacters = [];
 			this.enemyCharacters = [];
+			this.activeCharacters = [];
+			this.characterQueue = [];
+			this.partyList = [];
 			this.totalChars = 0;
 		},
 		

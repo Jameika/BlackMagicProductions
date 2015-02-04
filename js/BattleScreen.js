@@ -45,8 +45,8 @@ define(["./UIMain", "./sprite"], function(UIMain, Sprite){
 		for (var i = 0; i < BE.enemyCharacters.length; i++)
 		{
 			//roll Baddies randomly
-			//var foeType = Math.floor(Math.random() * 5);
-			var foeType = i;
+			var foeType = Math.floor(Math.random() * 5);
+			//var foeType = i;
 			var newSprite = new Sprite(spriteSheets[0], foeType, 0, curY);
 			newSprite.x = canvaswidth - newSprite.x_size;
 			curY += newSprite.y_size;
@@ -140,7 +140,7 @@ define(["./UIMain", "./sprite"], function(UIMain, Sprite){
 		{
 			BEngine.addCharacter(enemyParty[i], false);
 		}
-
+		clearDiv("#outText");
 		if (BEngine.ready())
 		{
 			console.log("GORILLA FATE IS TURNING");
@@ -220,7 +220,7 @@ define(["./UIMain", "./sprite"], function(UIMain, Sprite){
 	};
 	
 	function drawCharUI(character){
-		//Get actions, make buttons for them\
+		//Get actions, make buttons for them
 		inputState = "action";
 		clearDiv("inputDiv");
 		addDiv("actionDisDiv", "inputDiv");
