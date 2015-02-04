@@ -54,7 +54,7 @@ define([], function(){
 			else
 			{
 				
-				var damage = Math.floor(engine.Physical_Damage(actor, actor) * engine.variance());
+				var damage = Math.floor((actor.attack) * engine.variance());
 				if (damage < 0)
 				{
 					damage = -1 * damage;
