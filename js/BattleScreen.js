@@ -199,9 +199,6 @@ define(["./UIMain", "./sprite"], function(UIMain, Sprite){
     		console.log("CLICKITY!");
     		console.log(clickedX);
     		console.log(clickedY);
-    		//bc of how Chrome draws things, we need to do *shenanigans*
-    		//y is pure times 3
-    		//x is interesting, but I think that's because of the flipping
     		for (var i = 0; i < currentSprites.enemy.length; i++)
     		{
     			if (currentSprites.enemy[i].isInBounds(clickedX, clickedY) && currentSprites.enemy[i].drawn)
@@ -213,6 +210,20 @@ define(["./UIMain", "./sprite"], function(UIMain, Sprite){
     					BEngine.inputAction(inputAction, currentSprites.enemy[i].character);
     				}
     				console.log(currentSprites.enemy[i]);
+    				break;
+    			}
+    		}
+    		for (var i = 0; i < currentSprites.player.length; i++)
+    		{
+    			if (currentSprites.player[i].isInBounds(clickedX, clickedY) && currentSprites.player[i].drawn)
+    			{
+    				//Return a thing that says we clicked on the thing
+    				if (inputState == "target")
+    				{
+    					inputState = "block";
+    					BEngine.inputAction(inputAction, currentSprites.player[i].character);
+    				}
+    				console.log(currentSprites.player[i]);
     				break;
     			}
     		}

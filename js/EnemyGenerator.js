@@ -39,7 +39,9 @@ define(["./actions", "./character"], function(Actions, Character){'use strict';
 			var outDamage = [];
 			for (var i in aList)
 			{
-				outDamage.push(Actions[aList[i]](this.engine, c1, c2, true));
+				var damage = Actions[aList[i]](this.engine, c1, c2, true);
+				if (damage != undefined)
+					outDamage.push(Actions[aList[i]](this.engine, c1, c2, true));
 			}
 			//Do clever math things to the array to get the requested values.
 			if (isAverage) return outDamage.reduce(function(a, b) { return a + b; }) / outDamage.length;
