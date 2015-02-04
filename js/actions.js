@@ -41,6 +41,26 @@ define([], function(){
 			var damage = Math.floor(engine.Magical_Damage(actor, target) * engine.variance()) + 1;
 			printLine(actor.name + " casts Ray at " + target.name + "<br>" + target.name + " takes " + damage + " damage!", "outText");
 			target.takeDamage(damage);
+		},
+		
+		"Supplex" : function(engine, actor, target, testing){
+			if (testing) return Math.floor(engine.toHit(actor, target,true) * engine.toHit(actor, target,true) * engine.Physical_Damage(actor, target)) * Math.floor(engine.Physical_Damage(actor, target) * engine.variance(true)) + 1;
+			if (engine.toHit(actor, target) && engine.toHit(actor, target))
+			{
+				var damage = Math.floor(engine.Physical_Damage(actor, target)) * Math.floor(engine.Physical_Damage(actor, target) * engine.variance()) + 1;
+			}
+			else
+			{
+				var damage = Math.floor(engine.Physical_Damage(actor, actor) * engine.variance());
+				if (damage > 0)
+				{
+					actor.takeDamage(damage);
+				}
+				else
+				{
+					actor.takeDamage(-1 * damage);
+				}
+			}
 		}
 	};
 	

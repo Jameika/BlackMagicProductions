@@ -47,12 +47,7 @@ function printLine(newText, divID)
 	}
 	var divText = $(divID).html();
 	$(divID).html(divText + "<p>" + newText + "</p>");
-	/*if (divText != ''){
-		$(divID).html(divText + "<br>" + newText);
-	}
-	else{
-		$(divID).html(newText);
-	}*/
+	
 	$(divID).scrollTop($(divID)[0].scrollHeight);;	
 }
 
