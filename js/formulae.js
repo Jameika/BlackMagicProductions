@@ -55,34 +55,35 @@ define([], function() {'use strict';
 		},
 		
 		critical_chance: {
-			none: function(character){
+			none: function(character, expected){
+				if (expected) return 0;
 				return false;
 			},
 			
-			always: function(character){
+			always: function(character, expected){
+				if (expected) return 1;
 				return true;
 			},
 			
-			simple: function(character){
+			simple: function(character, expected){
+				if (expected) return .15;
 				return Math.random() < .15;
 			},
 		},
 		
 		critical_damage: {
-			static: function(character, damage){
+			static: function(character, damage, expected){
 				return 2 * damage;
 			},
 			
-			simple: function(character, damage){
-				return Math.floor(2 + (Math.random() - .5) * damage);
+			simple: function(character, damage, expected){
+				if (expected) return (damage * 2);
+				return Math.floor((Math.random() + 1.5) * damage);
 			},
 		},
 		
 		//By convention, we use the following variables: [Atk, Def]
 		Physical_Damage: {
-			static : function(char1, char2) {
-				return 3;
-			},
 			simple : function(char1, char2) {
 				return Math.max(char1.attack - char2.defense + 5, 1);
 			},
@@ -95,9 +96,7 @@ define([], function() {'use strict';
 		},
 		
 		Magical_Damage: {
-			static : function(char1, char2) {
-				return 3;
-			},
+
 			simple : function(char1, char2) {
 				return Math.max((char1.special - char2.specialDefense), 1);
 			},
@@ -110,16 +109,20 @@ define([], function() {'use strict';
 		},
 		
 		toHit: {
-			static : function(char1, char2){
+			static : function(char1, char2, test){
+				if (test) return 1;
 				return true;
 			},
-			simple : function(char1, char2) {
+			simple : function(char1, char2, test) {
+				if (test) return .75;
 				return (Math.random() < .75);
 			},
-			linear : function(char1, char2) {
+			linear : function(char1, char2, test) {
+				if (test) return ((char1.accuracy - char2.accuracy) / 2 + 50)/100;
 				return (char1.accuracy - char2.accuracy) / 2 + 50 > (Math.random() * 100);
 			},
-			ratio : function(char1, char2) {
+			ratio : function(char1, char2, test) {
+				if (test) return (char1.accuracy) / (char1.accuracy + char2.accuracy);
 				return (char1.accuracy) / (char1.accuracy + char2.accuracy) > Math.random();
 			},
 		}
