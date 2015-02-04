@@ -48,20 +48,28 @@ define([], function(){
 			if (engine.toHit(actor, target) && engine.toHit(actor, target))
 			{
 				var damage = Math.floor(engine.Physical_Damage(actor, target)) * Math.floor(engine.Physical_Damage(actor, target) * engine.variance()) + 1;
+				target.takeDamage(damage);
+				printLine(actor.name + " supplexes " + target.name + "<br>" + target.name + " takes " + damage + " damage!", "outText");
 			}
 			else
 			{
+				
 				var damage = Math.floor(engine.Physical_Damage(actor, actor) * engine.variance());
-				if (damage > 0)
+				if (damage < 0)
 				{
-					actor.takeDamage(damage);
+					damage = -1 * damage;
 				}
-				else
-				{
-					actor.takeDamage(-1 * damage);
-				}
+				actor.takeDamage(damage);
+				printLine(actor.name + "'s supplex missed!<br>" + actor.name + " takes " + damage + " damage!", "outText");
 			}
-		}
+		},
+		
+		"Cure" : function(engine, actor, target, testing){
+			if (testing) return undefined;
+			var healing = Math.floor(engine.Magical_Damage(actor, {specialDefense : 40}) * engine.variance()) + 1;
+			target.healHealth(healing);
+			printLine(actor.name + " casts Cure on " + target.name + "<br>" + target.name + " heals " + healing + " health!", "outText");
+		},
 	};
 	
 	return actions;

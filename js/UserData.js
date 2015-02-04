@@ -14,7 +14,7 @@ define([], function(UIMain){
 			console.log("User loaded");
 			this.username = "Player";
 			this.currentParty = [
-			{name: 'Micah', maxHP: 293, maxMP: 102, attack: 48, defense: 68, special: 92, specialDefense: 107, speed: 87, agility: 51, skills: ['Attack', 'Ray']},
+			{name: 'Micah', maxHP: 293, maxMP: 102, attack: 48, defense: 68, special: 92, specialDefense: 107, speed: 87, agility: 51, skills: ['Attack', 'Ray', 'Cure']},
 			{name: 'Mazin', maxHP: 432, maxMP: 75, attack: 77, defense: 92, special: 63, specialDefense: 39, speed: 82, agility: 75, skills: ['Attack', 'Supplex']}
 			];
 			this.currentBattleParameters = {
