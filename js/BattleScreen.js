@@ -223,6 +223,7 @@ define(["./UIMain", "./sprite"], function(UIMain, Sprite){
 		//Get actions, make buttons for them
 		inputState = "action";
 		clearDiv("inputDiv");
+		printLine("Current Turn: " + character.name, "inputDiv");
 		addDiv("actionDisDiv", "inputDiv");
 		printLine("Choose action:", "actionDisDiv");
 		for (var i = 0; i < character.skills.length; i++)

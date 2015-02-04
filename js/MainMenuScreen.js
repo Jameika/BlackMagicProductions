@@ -48,7 +48,6 @@ define(["./UIMain", "./BattleScreen", "./formulae"], function(UIMain, BattleScre
 			for (var v in User.currentBattleParameters)
 			{
 				var curInput = $input.filter('[name="' + v + '"]');
-				console.log(curInput);
 				for (var i = 0; i < curInput.length; i++)
 				{
 					if (curInput[i].checked)
