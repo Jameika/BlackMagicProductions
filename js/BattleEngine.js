@@ -65,6 +65,19 @@ define(["./character", "./formulae", "./actions"], function(Character, Formulae,
 			this.totalChars++;
 		},
 		
+		reAddParty : function(party){
+			console.log(party);
+			for (var i =0; i < party.length; i++)
+			{
+				var character = party[i];
+				this.playerCharacters.push(character);
+				this.partyList.push[0];
+				this.allCharacters.push(character);
+				this.activeCharacters.push(character.isKOed);
+				this.totalChars++;
+			}
+		},
+		
 		takeTurns : function(){
 			this.currentChar = this.getNextCharacter();
 			while (this.currentChar.party == 1)

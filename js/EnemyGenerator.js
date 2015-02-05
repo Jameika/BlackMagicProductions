@@ -80,6 +80,8 @@ define(["./actions", "./character"], function(Actions, Character){'use strict';
 			console.log(playerDamage);		
 			var averageTurnsToDefeat = Math.floor(Math.random() * 3) + 3;
 			newBaddy.HP = Math.floor(playerDamage.reduce(function(a,b) { return a+b;}) * averageTurnsToDefeat * (.3 * Math.random() + .8));
+			console.log("HP: " + newBaddy.HP);
+			newBaddy.HP = 1;
 			newBaddy.name = "Priapus";
 			return newBaddy;
 		},
