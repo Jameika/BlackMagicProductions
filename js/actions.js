@@ -44,17 +44,22 @@ define([], function(){
 		},
 		
 		"Supplex" : function(engine, actor, target, testing){
-			if (testing) return Math.floor(engine.toHit(actor, target,true) * engine.toHit(actor, target,true) * engine.Physical_Damage(actor, target)) * Math.floor(engine.Physical_Damage(actor, target) * engine.variance(true)) + 1;
+			if (testing)
+			{
+				var hitChance = engine.toHit(actor, target,true) * engine.toHit(actor, target,true);
+				var damage = engine.Physical_Damage(actor, target) + Math.floor(engine.Physical_Damage(actor, target) * engine.variance(true));
+				return Math.floor(hitChance * damage) + 1;
+			} 
 			if (engine.toHit(actor, target) && engine.toHit(actor, target))
 			{
-				var damage = Math.floor(engine.Physical_Damage(actor, target)) * Math.floor(engine.Physical_Damage(actor, target) * engine.variance()) + 1;
+				var damage = Math.floor(engine.Physical_Damage(actor, target)) + Math.floor(engine.Physical_Damage(actor, target) * engine.variance()) + 1;
 				target.takeDamage(damage);
 				printLine(actor.name + " supplexes " + target.name + "<br>" + target.name + " takes " + damage + " damage!", "outText");
 			}
 			else
 			{
 				
-				var damage = Math.floor((actor.attack) * engine.variance());
+				var damage = Math.floor(.5 * (actor.attack) * engine.variance());
 				if (damage < 0)
 				{
 					damage = -1 * damage;

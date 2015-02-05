@@ -112,7 +112,7 @@ define(["./UIMain", "./sprite"], function(UIMain, Sprite){
 		drawBattleScene();
 	};
 	
-	function initializeBattle(){
+	function initializeBattle(carryOverParty){
 		/*
 		 * 1) Add the player characters 
 		 * 2) Generate the enemy characters
@@ -130,10 +130,18 @@ define(["./UIMain", "./sprite"], function(UIMain, Sprite){
 				BEngine.setFunction(key, curBP[key]);
 	    	}
 		}
-		var PCs = User.currentParty;
-		for(var i in PCs)
+		if (carryOverParty) 
 		{
-			BEngine.addCharacter(PCs[i], true);
+			BEngine.reAddParty(carryOverParty);
+			var PCs = carryOverParty;
+		}
+		else 
+		{
+			var PCs = User.currentParty;
+			for(var i in PCs)
+			{
+				BEngine.addCharacter(PCs[i], true);
+			}
 		}
 		var enemyParty = EnemyGen.genParty(enemyPartySize, PCs);
 		for(var i in enemyParty)
@@ -174,6 +182,9 @@ define(["./UIMain", "./sprite"], function(UIMain, Sprite){
 		}
 		//WHY IS THIS UNDEFINED???
 		clearDiv("inputDiv");
+		addButton("inputDiv", "Another Round?", function(){
+			initializeBattle(BEngine.playerCharacters.slice());
+		});
 		addButton("inputDiv", "Return to Menu", function(){
 			MainMenuScreen();
 		});
