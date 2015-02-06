@@ -8,6 +8,7 @@ define(["./MainMenuScreen", "./Authentication", "./UIMain"], function(MainMenuSc
 		//Set the view
 		clearDiv(topDiv);
 		addDiv("logo", topDiv);
+		$("#logo").html("<center><h1>[WORKING TITLE]</h1><h2>Attack of the Helmetfish Army</h2></center>");
 		$(topDiv).html($(topDiv).html() + "<br>");
 		addDiv("login", topDiv);
 		addButton("#login", "Enter", function(){
